@@ -12,6 +12,8 @@ function strToBinary {
 if(isset($_POST['submit'])) {
 
     $b_or_h = $_POST['b_or_h'];
+
+    //checks if hexi or deci conversion
     if ($b_or_h == "binary"){
 
         strToBinary($str);
