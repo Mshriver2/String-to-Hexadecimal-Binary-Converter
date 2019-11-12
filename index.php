@@ -1,8 +1,7 @@
 <?php
 //©2019 Max Shriver and Spencer Dyvig
-$str = ($_POST['string_value'])
-
 function strToBinary {
+  $str = ($_POST['string_value'])
   $stringCount = strlen($str)
 
   for ($i = 0, $i < $stringCount, $i++) {
