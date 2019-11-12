@@ -10,7 +10,16 @@ function strToBinary {
 }
 
 if(isset($_POST['submit'])) {
-  echo strToBinary($str)
+
+    $b_or_h = $_POST['b_or_h'];
+    if ($b_or_h == "binary"){
+
+        strToBinary($str);
+
+    }elseif ($b_or_h == "hexadecimal") {
+
+    }
+
 }
 ?>
 
