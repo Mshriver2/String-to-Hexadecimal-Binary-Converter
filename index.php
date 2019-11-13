@@ -1,5 +1,7 @@
 <?php
-//©2019 Max Shriver and Spencer Dyvig
+//Copyright (C) 2019 Max Shriver and Spencer Dyvig
+// This file is part of String to Hexadecimal Binary Converter
+
 function strToBinary {
   $str = ($_POST['string_value'])
   $stringCount = strlen($str)
