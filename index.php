@@ -24,6 +24,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     echo "hi"
   }
 }*/
+
 $type = "";
 $str = "";
 
@@ -57,6 +58,5 @@ if(isset($_POST['submit'])) {
         <select name="base_selector"><option value="binary">Binary</option><option value="hexadecimal">Hexadecimal</option></select>
         <input name="submit" type="submit" value="Submit">
     </form>
-
-</body>
+  </body>
 </html>
