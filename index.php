@@ -17,47 +17,43 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-function strToBinary {
-  $str = ($_POST['string_value'])
+/*function strToBinary {
   $stringCount = strlen($str)
 
   for ($i = 0, $i < $stringCount, $i++) {
-
+    echo "hi"
   }
-}
+}*/
 
 if(isset($_POST['submit'])) {
 
-    $b_or_h = $_POST['b_or_h'];
+    $b_or_h = ($_POST['b_or_h']);
     if ($b_or_h == "binary"){
-
-        strToBinary($str);
+      print "binary";
+        //strToBinary();
 
     }elseif ($b_or_h == "hexadecimal") {
-
+      echo "hexadecimal";
+    }else {
+      print "hello";
     }
 
 }
 ?>
 
-
-
-<html>
-<head>
-
-</head>
-
-<body>
-
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>stbh</title>
+  </head>
+  <body>
+    <h1>ye</h1>
     <form method="post">
         <br><input type="text" minlength = "1" name="string_value" placeholder="Enter string">
         <select name="b_or_h"><option value="binary">Binary</option><option value="hexadecimal">Hexadecimal</option></select>
         <input name="new_password_submit" type="submit" value="Submit">
     </form>
 
-
-
 </body>
-
-
 </html>
