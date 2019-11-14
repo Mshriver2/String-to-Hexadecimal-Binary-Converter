@@ -25,19 +25,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   }
 }*/
 
-$type = "";
-$str = "";
+$baseSelector = ($_POST['base_selector']);
+$str = ($_POST['string_value']);
+$varAll = array($baseSelector, $str);
 
 if(isset($_POST['submit'])) {
-    $baseSelector = ($_POST['base_selector']);
-    $str = ($_POST['string_value']);
 
     if ($baseSelector == "binary"){
       // TODO: strToBinary();
-      $type = "binary";
     }elseif ($baseSelector == "hexadecimal") {
       // TODO: strToHex(); or binToHex();
-      $type = "hexadecimal";
     }else {
       // This should never be executed.
       $type = "error";
@@ -52,7 +49,7 @@ if(isset($_POST['submit'])) {
     <title>stbh</title>
   </head>
   <body>
-    <h1><?php echo $type;?></h1>
+    <h1><?php print_r($varAll[1]);?></h1>
     <form method="post">
         <br><input type="text" minlength = "1" name="string_value" placeholder="Enter string">
         <select name="base_selector"><option value="binary">Binary</option><option value="hexadecimal">Hexadecimal</option></select>
