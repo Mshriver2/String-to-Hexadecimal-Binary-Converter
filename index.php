@@ -24,20 +24,23 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     echo "hi"
   }
 }*/
+$type = "";
+$str = "";
 
 if(isset($_POST['submit'])) {
+    $baseSelector = ($_POST['base_selector']);
+    $str = ($_POST['string_value']);
 
-    $b_or_h = ($_POST['b_or_h']);
-    if ($b_or_h == "binary"){
-      print "binary";
-        //strToBinary();
-
-    }elseif ($b_or_h == "hexadecimal") {
-      echo "hexadecimal";
+    if ($baseSelector == "binary"){
+      // TODO: strToBinary();
+      $type = "binary";
+    }elseif ($baseSelector == "hexadecimal") {
+      // TODO: strToHex(); or binToHex();
+      $type = "hexadecimal";
     }else {
-      print "hello";
+      // This should never be executed.
+      $type = "error";
     }
-
 }
 ?>
 
@@ -48,11 +51,11 @@ if(isset($_POST['submit'])) {
     <title>stbh</title>
   </head>
   <body>
-    <h1>ye</h1>
+    <h1><?php echo $type;?></h1>
     <form method="post">
         <br><input type="text" minlength = "1" name="string_value" placeholder="Enter string">
-        <select name="b_or_h"><option value="binary">Binary</option><option value="hexadecimal">Hexadecimal</option></select>
-        <input name="new_password_submit" type="submit" value="Submit">
+        <select name="base_selector"><option value="binary">Binary</option><option value="hexadecimal">Hexadecimal</option></select>
+        <input name="submit" type="submit" value="Submit">
     </form>
 
 </body>
