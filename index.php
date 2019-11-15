@@ -24,21 +24,25 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     echo "hi"
   }
 }*/
+$results = "Please enter a string to convert, then select a base to convert to.";
 
 if(isset($_POST['submit'])) {
   $str = ($_POST['string_value']);
   $baseSelector = ($_POST['base_selector']);
-  $vars = array($str, $baseSelector);
+  $vars = array('string' => $str, 'base' => $baseSelector);
 
-    if (($vars[0] != "") && ($vars[1] == "binary")){
+    if (($vars['string'] != "") && ($vars['base'] == "binary")){
       // TODO: strToBinary();
-      $results = "{$vars[0]}, {$vars[1]}";
-    }elseif ($baseSelector == "hexadecimal") {
+      $results = "Results: {$vars['string']}, {$vars['base']}";
+    }elseif (($vars['string'] != "") && ($vars['base'] == "hexadecimal")) {
       // TODO: strToHex(); or binToHex();
-      $results = "{$vars[0]}, {$vars[1]}";
+      $results = "Results: {$vars['string']}, {$vars['base']}";
+    }elseif (($vars['string'] == "") && ($vars['base'] == "selectvalue")) {
+      $results = $results;
+    }elseif ($vars['string'] == "") {
+      $results = "Please enter a string value in the box.";
     }else {
-      // This should never be executed.
-      $results = "error";
+      $results = "Please select a base to convert to.";
     }
 }
 ?>
@@ -53,7 +57,7 @@ if(isset($_POST['submit'])) {
     <h1><?php echo $results;?></h1>
     <form method="post">
         <br><input type="text" minlength = "1" name="string_value" placeholder="Enter string">
-        <select name="base_selector"><option value="binary">Binary</option><option value="hexadecimal">Hexadecimal</option></select>
+        <select name="base_selector"><option value="selectvalue">Select a value...</option><option value="binary">Binary</option><option value="hexadecimal">Hexadecimal</option></select>
         <input name="submit" type="submit" value="Submit">
     </form>
   </body>
