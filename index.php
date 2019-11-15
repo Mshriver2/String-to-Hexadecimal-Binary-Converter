@@ -24,26 +24,30 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     echo "hi"
   }
 }*/
-$results = "Please enter a string to convert, then select a base to convert to.";
+//$results = "Please enter a string to convert, then select a base to convert to.";
 
-if(isset($_POST['submit'])) {
+function checkValues($vars) {
   $str = ($_POST['string_value']);
   $baseSelector = ($_POST['base_selector']);
   $vars = array('string' => $str, 'base' => $baseSelector);
 
-    if (($vars['string'] != "") && ($vars['base'] == "binary")){
-      // TODO: strToBinary();
-      $results = "Results: {$vars['string']}, {$vars['base']}";
-    }elseif (($vars['string'] != "") && ($vars['base'] == "hexadecimal")) {
-      // TODO: strToHex(); or binToHex();
-      $results = "Results: {$vars['string']}, {$vars['base']}";
-    }elseif (($vars['string'] == "") && ($vars['base'] == "selectvalue")) {
-      $results = $results;
-    }elseif ($vars['string'] == "") {
-      $results = "Please enter a string value in the box.";
-    }else {
-      $results = "Please select a base to convert to.";
-    }
+  if (($vars['string'] != "") && ($vars['base'] == "binary")){
+    // TODO: strToBinary();
+    echo "{$vars['string']}, {$vars['base']}";
+  }elseif (($vars['string'] != "") && ($vars['base'] == "hexadecimal")) {
+    // TODO: strToHex(); or binToHex();
+    echo "Results: {$vars['string']}, {$vars['base']}";
+  }elseif (($vars['string'] == "") && ($vars['base'] == "selectvalue")) {
+    echo "Please enter a value in the box and select a base conversion.";
+  }elseif ($vars['string'] == "") {
+    echo "Please enter a string value in the box.";
+  }else {
+    echo "Please select a base to convert to.";
+  }
+}
+
+if(isset($_POST['submit'])) {
+  checkValues($vars);
 }
 ?>
 
@@ -54,7 +58,6 @@ if(isset($_POST['submit'])) {
     <title>stbh</title>
   </head>
   <body>
-    <h1><?php echo $results;?></h1>
     <form method="post">
         <br><input type="text" minlength = "1" name="string_value" placeholder="Enter string">
         <select name="base_selector"><option value="selectvalue">Select a value...</option><option value="binary">Binary</option><option value="hexadecimal">Hexadecimal</option></select>
