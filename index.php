@@ -17,37 +17,37 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-/*function strToBinary {
-  $stringCount = strlen($str)
 
-  for ($i = 0, $i < $stringCount, $i++) {
-    echo "hi"
-  }
-}*/
-//$results = "Please enter a string to convert, then select a base to convert to.";
+$msg = "Please enter a value in the box and select a base conversion.";
 
+//Function that checks user-selected values in an array
 function checkValues($vars) {
-  $str = ($_POST['string_value']);
-  $baseSelector = ($_POST['base_selector']);
-  $vars = array('string' => $str, 'base' => $baseSelector);
+  //Defining string in textbox and base selector values in array $vars 
+  $vars = array('string' => $_POST['string_value'], 'base' => $_POST['base_selector']);
 
+  //Checking if string is set and if base conversion method is "Binary" then return results
   if (($vars['string'] != "") && ($vars['base'] == "binary")){
     // TODO: strToBinary();
-    echo "{$vars['string']}, {$vars['base']}";
+    return "Results: {$vars['string']}, {$vars['base']}";
+  //Checking if string is set and if base conversion method is "Hexadecimal" then return results
   }elseif (($vars['string'] != "") && ($vars['base'] == "hexadecimal")) {
     // TODO: strToHex(); or binToHex();
-    echo "Results: {$vars['string']}, {$vars['base']}";
+    return "Results: {$vars['string']}, {$vars['base']}";
+  //If neither string or base conversion method is set
   }elseif (($vars['string'] == "") && ($vars['base'] == "selectvalue")) {
-    echo "Please enter a value in the box and select a base conversion.";
+    return "Please enter a value in the box and select a base conversion.";
+  //If string is not set but base conversion method is
   }elseif ($vars['string'] == "") {
-    echo "Please enter a string value in the box.";
+    return "Please enter a string value in the box.";
+  //If string is set but base conversion method is not
   }else {
-    echo "Please select a base to convert to.";
+    return "Please select a base to convert to.";
   }
 }
 
+//Checking values when submit button is pressed and printing them on the screen
 if(isset($_POST['submit'])) {
-  checkValues($vars);
+  $msg = checkValues($vars);
 }
 ?>
 
@@ -58,6 +58,7 @@ if(isset($_POST['submit'])) {
     <title>stbh</title>
   </head>
   <body>
+    <h1><?php echo $msg;?></h1>
     <form method="post">
         <br><input type="text" minlength = "1" name="string_value" placeholder="Enter string">
         <select name="base_selector"><option value="selectvalue">Select a value...</option><option value="binary">Binary</option><option value="hexadecimal">Hexadecimal</option></select>
