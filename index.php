@@ -1,5 +1,7 @@
 <?php
 /*
+=======================================================================================
+
 This program converts text strings to binary and hexadecimal through a user interface.
 Copyright (C) 2019  Max Shriver, Spencer Dyvig
 
@@ -15,31 +17,43 @@ GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
-*/
 
+=======================================================================================
+*/
 
 $msg = "Please enter a value in the box and select a base conversion.";
 
+function strToBinary($vars) {
+  $characters = str_split($vars);
+  foreach ($characters as $character) {
+    $data = unpack('H*', $character);
+    $binary[] = base_convert($data[1], 16, 2);
+    }
+    return implode(" 0", $binary);
+}
+
+//function strToHex() {
+//}
+
 //Function that checks user-selected values in an array
 function checkValues($vars) {
-  //Defining string in textbox and base selector values in array $vars 
+  //Defining string in textbox and base selector value in array $vars
   $vars = array('string' => $_POST['string_value'], 'base' => $_POST['base_selector']);
 
-  //Checking if string is set and if base conversion method is "Binary" then return results
+  //Checking if string is not empty and if base conversion method is "Binary" then return results
   if (($vars['string'] != "") && ($vars['base'] == "binary")){
-    // TODO: strToBinary();
-    return "Results: {$vars['string']}, {$vars['base']}";
-  //Checking if string is set and if base conversion method is "Hexadecimal" then return results
+    return "Results: 0" . strToBinary($vars['string']);
+  //Checking if string is not empty and if base conversion method is "Hexadecimal" then return results
   }elseif (($vars['string'] != "") && ($vars['base'] == "hexadecimal")) {
     // TODO: strToHex(); or binToHex();
     return "Results: {$vars['string']}, {$vars['base']}";
-  //If neither string or base conversion method is set
+  //If string is empty and base conversion method is not selected
   }elseif (($vars['string'] == "") && ($vars['base'] == "selectvalue")) {
     return "Please enter a value in the box and select a base conversion.";
-  //If string is not set but base conversion method is
+  //If string is empty but base conversion method has been selected
   }elseif ($vars['string'] == "") {
     return "Please enter a string value in the box.";
-  //If string is set but base conversion method is not
+  //If string is not empty and base conversion method is not selected
   }else {
     return "Please select a base to convert to.";
   }
