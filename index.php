@@ -1,5 +1,7 @@
 <?php
 /*
+=======================================================================================
+
 This program converts text strings to binary and hexadecimal through a user interface.
 Copyright (C) 2019  Max Shriver, Spencer Dyvig
 
@@ -15,32 +17,51 @@ GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+=======================================================================================
 */
 
-/*function strToBinary {
-  $stringCount = strlen($str)
+$msg = "Please enter a value in the box and select a base conversion.";
 
-  for ($i = 0, $i < $stringCount, $i++) {
-    echo "hi"
-  }
-}*/
-$type = "";
-$str = "";
-
-if(isset($_POST['submit'])) {
-    $baseSelector = ($_POST['base_selector']);
-    $str = ($_POST['string_value']);
-
-    if ($baseSelector == "binary"){
-      // TODO: strToBinary();
-      $type = "binary";
-    }elseif ($baseSelector == "hexadecimal") {
-      // TODO: strToHex(); or binToHex();
-      $type = "hexadecimal";
-    }else {
-      // This should never be executed.
-      $type = "error";
+function strToBinary($vars) {
+  $characters = str_split($vars);
+  foreach ($characters as $character) {
+    $data = unpack('H*', $character);
+    $binary[] = base_convert($data[1], 16, 2);
     }
+    return implode(" 0", $binary);
+}
+
+//function strToHex() {
+//}
+
+//Function that checks user-selected values in an array
+function checkValues($vars) {
+  //Defining string in textbox and base selector value in array $vars
+  $vars = array('string' => $_POST['string_value'], 'base' => $_POST['base_selector']);
+
+  //Checking if string is not empty and if base conversion method is "Binary" then return results
+  if (($vars['string'] != "") && ($vars['base'] == "binary")){
+    return "Results: 0" . strToBinary($vars['string']);
+  //Checking if string is not empty and if base conversion method is "Hexadecimal" then return results
+  }elseif (($vars['string'] != "") && ($vars['base'] == "hexadecimal")) {
+    // TODO: strToHex(); or binToHex();
+    return "Results: {$vars['string']}, {$vars['base']}";
+  //If string is empty and base conversion method is not selected
+  }elseif (($vars['string'] == "") && ($vars['base'] == "selectvalue")) {
+    return "Please enter a value in the box and select a base conversion.";
+  //If string is empty but base conversion method has been selected
+  }elseif ($vars['string'] == "") {
+    return "Please enter a string value in the box.";
+  //If string is not empty and base conversion method is not selected
+  }else {
+    return "Please select a base to convert to.";
+  }
+}
+
+//Checking values when submit button is pressed and printing them on the screen
+if(isset($_POST['submit'])) {
+  $msg = checkValues($vars);
 }
 ?>
 
@@ -51,12 +72,11 @@ if(isset($_POST['submit'])) {
     <title>stbh</title>
   </head>
   <body>
-    <h1><?php echo $type;?></h1>
+    <h1><?php echo $msg;?></h1>
     <form method="post">
         <br><input type="text" minlength = "1" name="string_value" placeholder="Enter string">
-        <select name="base_selector"><option value="binary">Binary</option><option value="hexadecimal">Hexadecimal</option></select>
+        <select name="base_selector"><option value="selectvalue">Select a value...</option><option value="binary">Binary</option><option value="hexadecimal">Hexadecimal</option></select>
         <input name="submit" type="submit" value="Submit">
     </form>
-
-</body>
+  </body>
 </html>
