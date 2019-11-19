@@ -23,8 +23,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 $msg = "Please enter a value in the box and select a base conversion.";
 
-function strToBinary($vars) {
-  $characters = str_split($vars);
+function strToBinary($vars_array) {
+  $characters = str_split($vars_array);
   foreach ($characters as $character) {
     $data = unpack('H*', $character);
     $binary[] = base_convert($data[1], 16, 2);
@@ -32,27 +32,29 @@ function strToBinary($vars) {
     return implode(" 0", $binary);
 }
 
-//function strToHex() {
-//}
 
-//Function that checks user-selected values in an array
-function checkValues($vars) {
-  //Defining string in textbox and base selector value in array $vars
-  $vars = array('string' => $_POST['string_value'], 'base' => $_POST['base_selector']);
+function checkValues($vars_array) {
+
+  //Defining string in textbox and base selector value in array $vars_array
+  $vars_array = array('string' => $_POST['string_value'], 'base' => $_POST['base_selector']);
 
   //Checking if string is not empty and if base conversion method is "Binary" then return results
-  if (($vars['string'] != "") && ($vars['base'] == "binary")){
-    return "Results: 0" . strToBinary($vars['string']);
+  if (($vars_array['string'] != "") && ($vars_array['base'] == "binary")){
+    return "Results: 0" . strToBinary($vars_array['string']);
+
   //Checking if string is not empty and if base conversion method is "Hexadecimal" then return results
-  }elseif (($vars['string'] != "") && ($vars['base'] == "hexadecimal")) {
+  }elseif (($vars_array['string'] != "") && ($vars_array['base'] == "hexadecimal")) {
     // TODO: strToHex(); or binToHex();
-    return "Results: {$vars['string']}, {$vars['base']}";
+    return "Results: {$vars_array['string']}, {$vars_array['base']}";
+
   //If string is empty and base conversion method is not selected
-  }elseif (($vars['string'] == "") && ($vars['base'] == "selectvalue")) {
+  }elseif (($vars_array['string'] == "") && ($vars_array['base'] == "selectvalue")) {
     return "Please enter a value in the box and select a base conversion.";
+
   //If string is empty but base conversion method has been selected
-  }elseif ($vars['string'] == "") {
+  }elseif ($vars_array['string'] == "") {
     return "Please enter a string value in the box.";
+
   //If string is not empty and base conversion method is not selected
   }else {
     return "Please select a base to convert to.";
@@ -61,7 +63,7 @@ function checkValues($vars) {
 
 //Checking values when submit button is pressed and printing them on the screen
 if(isset($_POST['submit'])) {
-  $msg = checkValues($vars);
+  $msg = checkValues($vars_array);
 }
 ?>
 
