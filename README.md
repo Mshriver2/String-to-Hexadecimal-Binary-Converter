@@ -12,3 +12,6 @@ To begin developing on the project follow these commands.
 git clone https://github.com/Mshriver2/String-to-Hexadecimal-Binary-Converter.git
 cd String-to-Hexadecimal-Binary-Converter/
 ```
+## TODO
+..* Function to convert hex to binary
+..* Function to convert binary to hex
