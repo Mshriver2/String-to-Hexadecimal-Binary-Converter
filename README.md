@@ -13,5 +13,5 @@ git clone https://github.com/Mshriver2/String-to-Hexadecimal-Binary-Converter.gi
 cd String-to-Hexadecimal-Binary-Converter/
 ```
 ## TODO
-..* Function to convert hex to binary
-..* Function to convert binary to hex
+* Function to convert hex to binary
+* Function to convert binary to hex
