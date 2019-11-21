@@ -32,6 +32,10 @@ function strToBinary($vars_array) {
     return implode(" 0", $binary);
 }
 
+function strToHex($vars_array) {
+    return array_shift(unpack('H*', $vars_array));
+}
+
 
 function checkValues($vars_array) {
 
@@ -40,12 +44,12 @@ function checkValues($vars_array) {
 
   //Checking if string is not empty and if base conversion method is "Binary" then return results
   if (($vars_array['string'] != "") && ($vars_array['base'] == "binary")){
-    return "Results: 0" . strToBinary($vars_array['string']);
+    return "String as Binary: 0" . strToBinary($vars_array['string']);
 
   //Checking if string is not empty and if base conversion method is "Hexadecimal" then return results
   }elseif (($vars_array['string'] != "") && ($vars_array['base'] == "hexadecimal")) {
     // TODO: strToHex(); or binToHex();
-    return "Results: {$vars_array['string']}, {$vars_array['base']}";
+    return "String as Hexadecimal: " . strToHex($vars_array['string']);
 
   //If string is empty and base conversion method is not selected
   }elseif (($vars_array['string'] == "") && ($vars_array['base'] == "selectvalue")) {
@@ -71,14 +75,42 @@ if(isset($_POST['submit'])) {
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>stbh</title>
+    <title>STR to BIN</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link href="//netdna.bootstrapcdn.com/bootswatch/3.1.0/superhero/bootstrap.min.css" rel="stylesheet">
   </head>
   <body>
+
+      <div class="row centered-form">
+        <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
+          <div class="panel panel-default">
+
+
     <h1><?php echo $msg;?></h1>
     <form method="post">
-        <br><input type="text" minlength = "1" name="string_value" placeholder="Enter string">
-        <select name="base_selector"><option value="selectvalue">Select a value...</option><option value="binary">Binary</option><option value="hexadecimal">Hexadecimal</option></select>
-        <input name="submit" type="submit" value="Submit">
+        <div class="form-group">
+        <br><input type="text" minlength = "1" name="string_value" placeholder="Enter string" class="form-control">
+        </div>
+
+        <div class="form-group">
+        <select name="base_selector" class="custom-select" multiple>
+            <option value="selectvalue">Select a value...</option>
+            <option value="binary">Binary</option>
+            <option value="hexadecimal">Hexadecimal</option>
+            <option value="binary_to_hex">Binary to Hexadecimal</option>
+            <option value="hex_to_binary">Hexadecimal to Binary</option></select>
+        </div>
+        <input name="submit" type="submit" value="Submit" class="btn btn-info btn-block">
+
+            </div>
+        </div>
+    </div>
+
     </form>
+
+    <div class="footer">
+        <p>©2019 Keker, LLC</p>
+    </div>
+
   </body>
 </html>
