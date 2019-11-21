@@ -1,5 +1,6 @@
 body{
   background: url("img/stardust.png");
+  background-color: #424242;
 }
 
 .centered-form .panel{
@@ -20,4 +21,20 @@ body{
   background-color: #39B3D7;
   color: white;
   text-align: center;
+}
+
+h2{
+    font-size: 72px;
+    text-align: center;
+}
+
+h1{
+    color: white;
+    text-align: center;
+}
+
+h3{
+    color: white;
+    font-size: 48px;
+    text-align: center;
 }
