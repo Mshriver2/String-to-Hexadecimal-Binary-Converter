@@ -19,4 +19,4 @@ cd String-to-Hexadecimal-Binary-Converter/
 * Function to convert binary to string
 * Function to convert hex to binary
 * Function to convert binary to hex
-* Change css colors to be more appealing
+* ~~Change css colors to be more appealing~~
