@@ -21,8 +21,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 =======================================================================================
 */
 
-$msg = "Please enter a value in the box and select a base conversion.";
+//Variable value shows up at top of page, used to dispaly results and messages to users
+$msg = "";
 
+//Converts a String value from $vars_array to a Hexadecimal
 function strToBinary($vars_array) {
   $characters = str_split($vars_array);
   foreach ($characters as $character) {
@@ -32,8 +34,14 @@ function strToBinary($vars_array) {
     return implode(" 0", $binary);
 }
 
+//Converts a String value from $vars_array to a Hexadecimal
 function strToHex($vars_array) {
     return array_shift(unpack('H*', $vars_array));
+}
+
+//Converts a Hexadecimal value from $vars_array to a string
+function hexToStr($vars_array) {
+    return pack('H*', $vars_array);
 }
 
 
@@ -48,8 +56,13 @@ function checkValues($vars_array) {
 
   //Checking if string is not empty and if base conversion method is "Hexadecimal" then return results
   }elseif (($vars_array['string'] != "") && ($vars_array['base'] == "hexadecimal")) {
-    // TODO: strToHex(); or binToHex();
+
     return "String as Hexadecimal: " . strToHex($vars_array['string']);
+
+  //Checking if string is not empty and if base conversion method is "Hexadecimal to String" then return results
+}elseif (($vars_array['string'] != "") && ($vars_array['base'] == "hex_to_string")) {
+
+    return "Hexadecimal as String: " . hexToStr($vars_array['string']);
 
   //If string is empty and base conversion method is not selected
   }elseif (($vars_array['string'] == "") && ($vars_array['base'] == "selectvalue")) {
@@ -71,22 +84,23 @@ if(isset($_POST['submit'])) {
 }
 ?>
 
-<!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
     <title>STR to BIN</title>
-    <link rel="stylesheet" type="text/css" href="styles.css">
     <link href="//netdna.bootstrapcdn.com/bootswatch/3.1.0/superhero/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="styles.css">
   </head>
   <body>
+
+      <h3>String to Hexadecimal Binary Converter</h3>
 
       <div class="row centered-form">
         <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
           <div class="panel panel-default">
 
+      <h1>Please enter a value in the box and select a base conversion.</h1>
 
-    <h1><?php echo $msg;?></h1>
     <form method="post">
         <div class="form-group">
         <br><input type="text" minlength = "1" name="string_value" placeholder="Enter string" class="form-control">
@@ -97,9 +111,11 @@ if(isset($_POST['submit'])) {
             <option value="selectvalue">Select a value...</option>
             <option value="binary">Binary</option>
             <option value="hexadecimal">Hexadecimal</option>
+            <option value="hex_to_string">Hexadecimal to String</option>
             <option value="binary_to_hex">Binary to Hexadecimal</option>
             <option value="hex_to_binary">Hexadecimal to Binary</option></select>
         </div>
+
         <input name="submit" type="submit" value="Submit" class="btn btn-info btn-block">
 
             </div>
@@ -107,6 +123,8 @@ if(isset($_POST['submit'])) {
     </div>
 
     </form>
+
+    <h2><?php echo $msg;?></h2>
 
     <div class="footer">
         <p>©2019 Keker, LLC</p>
