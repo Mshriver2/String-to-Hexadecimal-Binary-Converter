@@ -24,7 +24,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //Variable value shows up at top of page, used to dispaly results and messages to users
 $msg = "";
 
-//Converts a String value from $vars_array to a Hexadecimal
+//Converts a String value from $vars_array to Binary
 function strToBinary($vars_array) {
   $characters = str_split($vars_array);
   foreach ($characters as $character) {
@@ -32,6 +32,17 @@ function strToBinary($vars_array) {
     $binary[] = base_convert($data[1], 16, 2);
     }
     return implode(" 0", $binary);
+}
+
+//Converts a Binary value from $vars_array to a string
+function binToStr($vars_array){
+    $bins = explode(' ', $vars_array);
+
+    $string = null;
+    foreach ($bins as $vars_array) {
+        $string .= pack('H*', dechex(bindec($vars_array)));
+    }
+    return $string;
 }
 
 //Converts a String value from $vars_array to a Hexadecimal
@@ -43,6 +54,8 @@ function strToHex($vars_array) {
 function hexToStr($vars_array) {
     return pack('H*', $vars_array);
 }
+
+
 
 
 function checkValues($vars_array) {
@@ -63,6 +76,17 @@ function checkValues($vars_array) {
 }elseif (($vars_array['string'] != "") && ($vars_array['base'] == "hex_to_string")) {
 
     return "Hexadecimal as String: " . hexToStr($vars_array['string']);
+
+  //Checking if string is not empty and if base conversion method is "Binary to Hexadecimal" then return results
+}elseif (($vars_array['string'] != "") && ($vars_array['base'] == "binary_to_hex")) {
+
+    //built in function to go bin to hex
+    return "Hexadecimal as Binary: " . dechex(bindec($vars_array['string']));
+
+    //Checking if string is not empty and if base conversion method is "Binary to String" then return results
+}elseif (($vars_array['string'] != "") && ($vars_array['base'] == "bin_to_string")) {
+
+      return "Binary as String: " . binToStr($vars_array['string']);
 
   //If string is empty and base conversion method is not selected
   }elseif (($vars_array['string'] == "") && ($vars_array['base'] == "selectvalue")) {
@@ -112,6 +136,7 @@ if(isset($_POST['submit'])) {
             <option value="binary">Binary</option>
             <option value="hexadecimal">Hexadecimal</option>
             <option value="hex_to_string">Hexadecimal to String</option>
+            <option value="bin_to_string">Binary to String</option>
             <option value="binary_to_hex">Binary to Hexadecimal</option>
             <option value="hex_to_binary">Hexadecimal to Binary</option></select>
         </div>
