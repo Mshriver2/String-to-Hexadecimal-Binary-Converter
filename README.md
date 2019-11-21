@@ -16,7 +16,7 @@ cd String-to-Hexadecimal-Binary-Converter/
 * ~~Function to convert string to binary~~
 * ~~Function to convert string to hex~~
 * ~~Function to convert hex to string~~
-* Function to convert binary to string
+* ~~Function to convert binary to string~~
 * Function to convert hex to binary
-* Function to convert binary to hex
+* ~~Function to convert binary to hex~~
 * ~~Change css colors to be more appealing~~
