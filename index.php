@@ -88,6 +88,11 @@ function checkValues($vars_array) {
 
       return "Binary as String: " . binToStr($vars_array['string']);
 
+    //Checking if string is not empty and if base conversion method is "Hexadecimal to Binary" then return results
+}elseif (($vars_array['string'] != "") && ($vars_array['base'] == "hex_to_binary")) {
+
+      return "Hexadecimal as Binary: " . strToBinary(hex2bin($vars_array['string']));
+
   //If string is empty and base conversion method is not selected
   }elseif (($vars_array['string'] == "") && ($vars_array['base'] == "selectvalue")) {
     return "Please enter a value in the box and select a base conversion.";
@@ -133,8 +138,8 @@ if(isset($_POST['submit'])) {
         <div class="form-group">
         <select name="base_selector" class="custom-select" multiple>
             <option value="selectvalue">Select a value...</option>
-            <option value="binary">Binary</option>
-            <option value="hexadecimal">Hexadecimal</option>
+            <option value="binary">String to Binary</option>
+            <option value="hexadecimal">String to Hexadecimal</option>
             <option value="hex_to_string">Hexadecimal to String</option>
             <option value="bin_to_string">Binary to String</option>
             <option value="binary_to_hex">Binary to Hexadecimal</option>
