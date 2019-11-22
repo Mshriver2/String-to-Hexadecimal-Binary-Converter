@@ -1,5 +1,5 @@
 # String-to-Hexadecimal-Binary-Converter
-Easily convert any string to it's hexadecimal or binary value using php.
+Easily convert any string to it's hexadecimal or binary value, as well as converting back to string from hexadecimal or binary using php.
 
 ## Getting Started
 Load index.php into a webserver, load the page, get converting!
@@ -17,6 +17,6 @@ cd String-to-Hexadecimal-Binary-Converter/
 * ~~Function to convert string to hex~~
 * ~~Function to convert hex to string~~
 * ~~Function to convert binary to string~~
-* Function to convert hex to binary
+* ~~Function to convert hex to binary~~
 * ~~Function to convert binary to hex~~
 * ~~Change css colors to be more appealing~~
