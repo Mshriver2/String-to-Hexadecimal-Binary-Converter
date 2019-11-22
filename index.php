@@ -55,56 +55,69 @@ function hexToStr($vars_array) {
     return pack('H*', $vars_array);
 }
 
-
-
-
 function checkValues($vars_array) {
 
   //Defining string in textbox and base selector value in array $vars_array
   $vars_array = array('string' => $_POST['string_value'], 'base' => $_POST['base_selector']);
 
-  //Checking if string is not empty and if base conversion method is "Binary" then return results
-  if (($vars_array['string'] != "") && ($vars_array['base'] == "binary")){
-    return "String as Binary: 0" . strToBinary($vars_array['string']);
+  //Checking if string is empty
+  if ($vars_array['string'] == ""){
 
-  //Checking if string is not empty and if base conversion method is "Hexadecimal" then return results
-  }elseif (($vars_array['string'] != "") && ($vars_array['base'] == "hexadecimal")) {
 
-    return "String as Hexadecimal: " . strToHex($vars_array['string']);
+      //If string is empty and base conversion method is not selected
+      if ($vars_array['base'] == "selectvalue") {
+        return "Please enter a value in the box and select a base conversion.";
 
-  //Checking if string is not empty and if base conversion method is "Hexadecimal to String" then return results
-}elseif (($vars_array['string'] != "") && ($vars_array['base'] == "hex_to_string")) {
+      //If string is empty but base conversion method has been selected
+     }elseif ($vars_array['base'] != "selectvalue") {
+        return "Please enter a string value in the box.";
+     }
 
-    return "Hexadecimal as String: " . hexToStr($vars_array['string']);
 
-  //Checking if string is not empty and if base conversion method is "Binary to Hexadecimal" then return results
-}elseif (($vars_array['string'] != "") && ($vars_array['base'] == "binary_to_hex")) {
+  }else{
 
-    //built in function to go bin to hex
-    return "Hexadecimal as Binary: " . dechex(bindec($vars_array['string']));
+  //Checks the base value and runs appropriate function
+  switch ($vars_array['base']) {
 
-    //Checking if string is not empty and if base conversion method is "Binary to String" then return results
-}elseif (($vars_array['string'] != "") && ($vars_array['base'] == "bin_to_string")) {
+      //Checking if base conversion method is "Binary" then return results
+      case 'binary':
+          return "String as Binary: 0" . strToBinary($vars_array['string']);
+          break;
 
-      return "Binary as String: " . binToStr($vars_array['string']);
+      //Checking if base conversion method is "Hexadecimal" then return results
+      case 'hexadecimal':
+          return "String as Hexadecimal: " . strToHex($vars_array['string']);
+          break;
 
-    //Checking if string is not empty and if base conversion method is "Hexadecimal to Binary" then return results
-}elseif (($vars_array['string'] != "") && ($vars_array['base'] == "hex_to_binary")) {
+      //Checking if base conversion method is "Hexadecimal to String" then return results
+      case 'hex_to_string':
+          return "Hexadecimal as String: " . hexToStr($vars_array['string']);
+          break;
 
-      return "Hexadecimal as Binary: " . strToBinary(hex2bin($vars_array['string']));
+      //Checking if base conversion method is "Binary to Hexadecimal" then return results
+      case 'binary_to_hex':
+          return "Binary as Hexadecimal: " . dechex(bindec($vars_array['string']));
+          break;
 
-  //If string is empty and base conversion method is not selected
-  }elseif (($vars_array['string'] == "") && ($vars_array['base'] == "selectvalue")) {
-    return "Please enter a value in the box and select a base conversion.";
+      //Checking if base conversion method is "Binary to String" then return results
+      case 'bin_to_string':
+          return "Binary as String: " . binToStr($vars_array['string']);
+          break;
 
-  //If string is empty but base conversion method has been selected
-  }elseif ($vars_array['string'] == "") {
-    return "Please enter a string value in the box.";
+      //Checking if base conversion method is "Hexadecimal to Binary" then return results
+      case 'hex_to_binary':
+          return "Hexadecimal as Binary: " . strToBinary(hex2bin($vars_array['string']));
+          break;
 
-  //If string is not empty and base conversion method is not selected
-  }else {
-    return "Please select a base to convert to.";
+      //If string is not empty and base conversion method is not selected
+      case '':
+            return "Please select a base conversion.";
+            break;
+
+      }
+
   }
+
 }
 
 //Checking values when submit button is pressed and printing them on the screen
