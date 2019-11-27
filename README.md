@@ -13,6 +13,7 @@ git clone https://github.com/Mshriver2/String-to-Hexadecimal-Binary-Converter.gi
 cd String-to-Hexadecimal-Binary-Converter/
 ```
 ## TODO
+* Make design responsive on all devices
 * ~~Function to convert string to binary~~
 * ~~Function to convert string to hex~~
 * ~~Function to convert hex to string~~
