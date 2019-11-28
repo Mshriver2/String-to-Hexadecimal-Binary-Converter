@@ -126,10 +126,13 @@ if(isset($_POST['submit'])) {
 }
 ?>
 
+<!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
-    <meta charset="utf-8">
     <title>STR to BIN</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="//netdna.bootstrapcdn.com/bootswatch/3.1.0/superhero/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="styles.css">
   </head>
@@ -165,9 +168,9 @@ if(isset($_POST['submit'])) {
         </div>
     </div>
 
-    </form>
+    </form><br>
 
-    <h2><?php echo $msg;?></h2>
+    <h2><?php echo $msg;?></h2><br>
 
     <div class="footer">
         <p>©2019 Keker, LLC</p>
