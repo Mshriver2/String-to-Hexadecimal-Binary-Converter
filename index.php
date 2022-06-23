@@ -129,22 +129,43 @@ if(isset($_POST['submit'])) {
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
-    <title>STR to BIN</title>
+    <title>String to Hex or Binary Converter - FormatSwap</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta http-equiv="content-language" content="en-us" />
+    <meta name="keywords" content="binary, hex, hexadecimal, converter, string, tool, convert, online">
+    <meta name="description" content="This online Hexadecimal / Binary converter can convert any string into binary or hex. You can also convert between hex and binary."/>
     <link href="//netdna.bootstrapcdn.com/bootswatch/3.1.0/superhero/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="assets/styles.css">
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+
+    <!-- analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KZ3DGJJHXY"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-KZ3DGJJHXY');
+    </script>
   </head>
   <body>
 
-      <h3>String to Hexadecimal Binary Converter</h3>
+    <header>
 
-      <div class="row centered-form">
-        <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
-          <div class="panel panel-default">
+        <nav>
+            <h1>FORMAT SWAP</h1>
+        </nav>
 
-      <h1>Please enter a value in the box and select a base conversion.</h1>
+    </header>
+
+    <h3>String to Hexadecimal Binary Converter</h3>
+    <div class="row centered-form">
+    <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
+    <div class="panel panel-default">
+
+      <h4>Please enter a value in the box and select a base conversion.</h4>
 
     <form method="post">
         <div class="form-group">
@@ -153,13 +174,13 @@ if(isset($_POST['submit'])) {
 
         <div class="form-group">
         <select name="base_selector" class="custom-select" multiple>
-            <option value="selectvalue">Select a value...</option>
             <option value="binary">String to Binary</option>
             <option value="hexadecimal">String to Hexadecimal</option>
             <option value="hex_to_string">Hexadecimal to String</option>
+            <option value="hex_to_binary">Hexadecimal to Binary</option>
             <option value="bin_to_string">Binary to String</option>
             <option value="binary_to_hex">Binary to Hexadecimal</option>
-            <option value="hex_to_binary">Hexadecimal to Binary</option></select>
+        </select>
         </div>
 
         <input name="submit" type="submit" value="Submit" class="btn btn-info btn-block">
